@@ -61,10 +61,9 @@ function createWindow() {
     },
   });
 
-  // Widget-like behavior: float above everything (including fullscreen apps)
-  // and follow you across every desktop Space.
+  // Widget-like behavior: float above other windows, but stay on this one
+  // Space/desktop only (doesn't follow you to other desktops or fullscreen apps).
   win.setAlwaysOnTop(true, 'floating');
-  win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
