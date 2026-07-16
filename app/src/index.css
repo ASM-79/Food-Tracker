@@ -1,0 +1,246 @@
+:root {
+  color-scheme: dark;
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Turn the glass effect up or down: 0 = fully see-through, 1 = solid */
+  --glass-opacity: 0.60;
+  --glass-blur: 20px;
+  /* Glass tint color: lower numbers = darker glass, higher = lighter/whiter glass */
+  --glass-tint: 0 0 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  color: #f2f2f6;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgb(var(--glass-tint) / calc(var(--glass-opacity) * 1.3));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  color: #f2f2f6;
+  padding: 6px 10px;
+  transition: background 0.15s ease;
+}
+
+button:hover {
+  background: rgb(var(--glass-tint) / calc(var(--glass-opacity) * 2.6));
+}
+
+input {
+  font: inherit;
+  background: rgb(var(--glass-tint) / var(--glass-opacity));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  color: #f2f2f6;
+  padding: 6px 8px;
+}
+
+input::placeholder {
+  color: rgba(242, 242, 246, 0.45);
+}
+
+input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.widget {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 12px;
+  gap: 10px;
+  background: linear-gradient(
+    160deg,
+    rgb(var(--glass-tint) / calc(var(--glass-opacity) * 1.7)),
+    rgb(var(--glass-tint) / calc(var(--glass-opacity) * 0.3))
+  );
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.drag-bar {
+  -webkit-app-region: drag;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drag-bar-actions {
+  -webkit-app-region: no-drag;
+  display: flex;
+  gap: 4px;
+}
+
+.drag-bar .link-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px 8px;
+}
+
+.weight-row {
+  display: flex;
+  gap: 6px;
+}
+
+.weight-row input {
+  flex: 1;
+}
+
+.settings-panel {
+  background: rgb(var(--glass-tint) / var(--glass-opacity));
+  backdrop-filter: blur(calc(var(--glass-blur) * 1.3));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 1.3));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.settings-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.settings-key-row {
+  display: flex;
+  gap: 6px;
+}
+
+.settings-key-row input {
+  flex: 1;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  text-transform: capitalize;
+  padding: 6px 4px;
+  border-radius: 7px;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tab.active {
+  background: rgba(120, 130, 255, 0.35);
+  border: 1px solid rgba(160, 170, 255, 0.4);
+}
+
+.add-row {
+  display: flex;
+  gap: 6px;
+}
+
+.add-row input {
+  flex: 1;
+}
+
+.meal-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meal-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  background: rgb(var(--glass-tint) / var(--glass-opacity));
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 7px 10px;
+}
+
+.meal-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meal-macros {
+  color: rgba(242, 242, 246, 0.6);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.del-btn {
+  background: transparent;
+  border: none;
+  color: rgba(242, 242, 246, 0.6);
+  padding: 0 4px;
+}
+
+.del-btn:hover {
+  color: #ff8080;
+  background: transparent;
+}
+
+.empty {
+  color: rgba(242, 242, 246, 0.4);
+  text-align: center;
+  padding: 12px 0;
+  font-size: 12px;
+}
+
+.totals {
+  background: rgb(var(--glass-tint) / calc(var(--glass-opacity) * 1.3));
+  backdrop-filter: blur(calc(var(--glass-blur) * 1.2));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 1.2));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.totals-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.totals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  font-size: 12px;
+  color: rgba(242, 242, 246, 0.85);
+}

@@ -1,0 +1,12 @@
+node_modules
+dist
+*.local
+
+# Secrets
+.env
+
+# Editor/OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
