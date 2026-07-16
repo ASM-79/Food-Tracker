@@ -52,12 +52,19 @@ function createWindow() {
     vibrancy: 'hud',
     visualEffectState: 'active',
     roundedCorners: true,
+    skipTaskbar: true,
+    hasShadow: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
     },
   });
+
+  // Widget-like behavior: float above everything (including fullscreen apps)
+  // and follow you across every desktop Space.
+  win.setAlwaysOnTop(true, 'floating');
+  win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
@@ -78,8 +85,12 @@ function createWindow() {
   });
 }
 
+const TRAY_ICON_PNG_BASE64 =
+  'iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAPElEQVR42mNgGI7gPw5MdQMpsuA/iZgmhhJl+H8KMX0N/k8lPGrwcDJ46KVjmmZpmhZCNC02aVrQD04AAO8p/wHU9dUlAAAAAElFTkSuQmCC';
+
 function createTray() {
-  const icon = nativeImage.createEmpty();
+  const icon = nativeImage.createFromDataURL(`data:image/png;base64,${TRAY_ICON_PNG_BASE64}`);
+  icon.setTemplateImage(true);
   tray = new Tray(icon);
   tray.setToolTip('Food Tracker');
   tray.setContextMenu(
